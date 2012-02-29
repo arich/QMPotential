@@ -2,7 +2,6 @@ package com.QMPotentialTest;
 
 import java.lang.Math; // Gives Math.exp, Math.sin, etc.
 import java.io.*;
-
 import org.apache.commons.math.complex.*;
 
 public class GaussianPotential {
