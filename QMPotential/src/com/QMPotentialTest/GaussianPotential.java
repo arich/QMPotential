@@ -81,5 +81,34 @@ public class GaussianPotential {
 			outFile.println(xvals[j]+","+psi[j].getReal()+",");
 		}
 	}
+	public double[] getXvals() {
+		return xvals;
+	}
+	/**
+	 * @return rPsi, an array of the real Psi values. 
+	 */
+	public double[] getRealPsi() {
+		double rPsi[] = new double[NMAX];
+		for (int i=0; i<NMAX; i++){
+			rPsi[i] = psi[i].getReal();
+		}
+		return rPsi;
+	}
+	public int getNMAX(){
+		return NMAX;
+	}
+	public double getKappa() {
+		return kappa;
+	}
+	public void setKappa(double kappa) {
+		this.kappa = kappa;
+	}
+	public double getAlpha() {
+		return alpha;
+	}
+	public void setAlpha(double alpha) {
+		this.alpha = alpha;
+	}
+	
 
 }

@@ -8,8 +8,6 @@
 	<classpathentry kind="lib" path="/MyWork/lib/commons-math-2.2-javadoc.jar"/>
 	<classpathentry kind="lib" path="/MyWork/lib/commons-math-2.2-sources.jar"/>
 	<classpathentry kind="lib" path="/MyWork/lib/commons-math-2.2.jar"/>
-	<classpathentry kind="lib" path="/Users/AndrewRich/Downloads/Androidplot-core-0.4.4-sources.jar"/>
-	<classpathentry kind="lib" path="/Users/AndrewRich/Downloads/Androidplot-core-0.4.4-javadoc.jar"/>
-	<classpathentry kind="lib" path="/Users/AndrewRich/Downloads/Androidplot-core-0.4.4-release.jar"/>
+	<classpathentry kind="lib" path="/Users/AndrewRich/Downloads/GraphView-2.0.jar"/>
 	<classpathentry kind="output" path="bin/classes"/>
 </classpath>
