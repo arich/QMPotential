@@ -88,8 +88,8 @@ public class GaussianPotential {
 	 * @return rPsi, an array of the real Psi values. 
 	 */
 	public double[] getRealPsi() {
-		double rPsi[] = new double[NMAX];
-		for (int i=0; i<NMAX; i++){
+		double rPsi[] = new double[2*NMAX];
+		for (int i=0; i<2*NMAX; i++){
 			rPsi[i] = psi[i].getReal();
 		}
 		return rPsi;
