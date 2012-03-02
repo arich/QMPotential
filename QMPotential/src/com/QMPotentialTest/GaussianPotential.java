@@ -8,7 +8,7 @@ public class GaussianPotential {
 	//fields:
 	private final static double DXI = 0.01; //step by which to integrate
 	private final static Complex E = new Complex(Math.E, 0);  //Complex version of E so we can have complex exponentials
-	private final int NMAX = 1000;  //Maximum steps in either direction
+	private final int NMAX = 2000;  //Maximum steps in either direction
 	private double kappa = 1; //energy level of wave
 	private double alpha = 1.0; //energy level of potential
 	private double[] xvals = new double[2*NMAX]; // x-values from -NMAX to NMAX

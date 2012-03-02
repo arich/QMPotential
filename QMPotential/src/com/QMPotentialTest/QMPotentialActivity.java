@@ -33,7 +33,7 @@ public class QMPotentialActivity extends Activity {
         
         //Hardcoded Kappa and alpha for now:
         double kappa = .8;
-        double alpha = 1.2;
+        double alpha = 1.5;
         
         //Getting GaussianPotential data
         GaussianPotential gp = new GaussianPotential(kappa, alpha);
@@ -48,7 +48,8 @@ public class QMPotentialActivity extends Activity {
           
         GraphView graphView = new LineGraphView(  
               this // context  
-              , "Psi(x) and V(x)" // heading  
+              , "T: "+Transmitted+
+              "\n   R: "+Reflected 
         );  
         graphView.addSeries(psiSeries); // Add Psi data
         graphView.addSeries(vSeries);   // Add V(x) data
@@ -63,7 +64,6 @@ public class QMPotentialActivity extends Activity {
      * @return series Psi(x) vs. x in the GraphViewSeries format
      */
     public static GraphViewSeries getData(GaussianPotential gp){
-    	int twoNmax = 2*gp.getNMAX();
     	double[] x = gp.getXvals();
     	double[] psi = gp.getRealPsi();
     	GraphViewData[] data = new GraphViewData[x.length];
@@ -79,7 +79,6 @@ public class QMPotentialActivity extends Activity {
      * @return series V(x) vs. x in the GraphViewSeries format
      */
     public static GraphViewSeries getPotential(GaussianPotential gp){
-    	int twoNmax = 2*gp.getNMAX();
     	double alph = gp.getAlpha();
     	double[] x = gp.getXvals();
     	double[] V = new double[x.length];
