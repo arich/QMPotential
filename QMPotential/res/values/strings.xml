@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <string name="hello">Hello World, QMPotentialActivity!</string>
+    <string name="Title">Psi(x) vs. V(x)</string>
     <string name="app_name">QMPotential</string>
 
 </resources>
