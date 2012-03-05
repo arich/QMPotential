@@ -6,10 +6,10 @@
     android:orientation="vertical">
 
     <TextView
+        android:id="@+id/progresstext"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:text="@string/Title" />
-
+         />
     <SeekBar
         android:id="@+id/kappabar"
         android:layout_width="fill_parent"
