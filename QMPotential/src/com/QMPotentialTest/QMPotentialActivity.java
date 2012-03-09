@@ -20,7 +20,7 @@ import java.text.NumberFormat;
 public class QMPotentialActivity extends Activity{
 	//Global objects/variables
     //Hardcoded initial Kappa and alpha for now:
-    final double INITKAPPA = 4;
+    final double INITKAPPA = 1;
     final double INITALPHA = 1.5;
     NumberFormat formatter = new DecimalFormat("#0.000");
     
