@@ -24,8 +24,10 @@ public class GaussianPotential {
 		this.fillXVals();
 	}
 	//methods:
+	//
 	public double van(double ALPHA, double xi){//Gaussian potential function
-		return ALPHA*Math.exp(-1*xi*xi);
+		final double HEIGHT = 1.75;
+		return HEIGHT*Math.exp(-1/ALPHA*xi*xi);
 	}
 	public double unifV(double ALPHA, double width, double xi){//Uniform (constant) potential function
 		if(xi>width/2 | xi< -width/2)
@@ -68,14 +70,24 @@ public class GaussianPotential {
 	}
 	public void integrateFun(){
 		for(int i=2*NMAX-2; i>0; i--){ //Integration backwards
-			psi[i-1] = psi[i].multiply(DXI*DXI*(-kappa+unifV(alpha, 3, xvals[i])));
+			psi[i-1] = psi[i].multiply(DXI*DXI*(-kappa+van(alpha, xvals[i])));
 			/*This is the unif.
 			* or gaussian: van(ALPHA, xvals[i])));
+			* unif: unifV(alpha, 3, xvals[i])));
 			*/
 			psi[i-1] = psi[i-1].add(psi[i].multiply(2));
 			psi[i-1] = psi[i-1].subtract(psi[i+1]);
 		}
 	}
+	public double maxValPsi(){
+		double newmax = 0;
+		for(int i = 0; i<NMAX; i++){					//we only want values from 0 to NMAX so we get -xmax to 0. 
+			if ( Math.abs(psi[i].getReal())> newmax )
+				newmax = psi[i].getReal();
+		}
+		return newmax;
+	}
+	
 	public void printToFile(PrintWriter outFile){ // prints each real row to an output file
 		for(int j = 0; j<2*NMAX; j++){
 			outFile.println(xvals[j]+","+psi[j].getReal()+",");

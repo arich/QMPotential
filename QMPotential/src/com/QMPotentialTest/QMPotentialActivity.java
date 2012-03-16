@@ -17,6 +17,8 @@ import android.widget.TextView;
 import java.text.DecimalFormat;
 import java.text.NumberFormat;
 
+import org.apache.commons.math.complex.Complex;
+
 public class QMPotentialActivity extends Activity{
 	//Global objects/variables
     //Hardcoded initial Kappa and alpha for now:
@@ -28,7 +30,7 @@ public class QMPotentialActivity extends Activity{
 	
 	GraphViewSeries vSeries;
 	GraphViewSeries psiSeries;
-	
+	GraphViewSeries kappaLine;
 	
     /** Called when the activity is first created. */
     @Override
@@ -37,11 +39,12 @@ public class QMPotentialActivity extends Activity{
         setContentView(R.layout.main);
         
         SeekBar kappaSeekBar;
+        SeekBar alphaSeekBar;
         
         makePlot();
         
         kappaSeekBar = (SeekBar) findViewById(R.id.kappabar);
-        kappaSeekBar.setMax(500);
+        kappaSeekBar.setBackgroundColor(Color.BLUE);
         kappaSeekBar.setOnSeekBarChangeListener( 
         		new SeekBar.OnSeekBarChangeListener() {
 					
@@ -68,6 +71,29 @@ public class QMPotentialActivity extends Activity{
 						System.out.println("4: Finish onProgress");
 					}
 				});
+       
+        alphaSeekBar = (SeekBar) findViewById(R.id.alphabar);
+        alphaSeekBar.setBackgroundColor(Color.RED);
+        alphaSeekBar.setOnSeekBarChangeListener( 
+        		new SeekBar.OnSeekBarChangeListener() {
+					
+					@Override
+					public void onStopTrackingTouch(SeekBar seekBar) {
+						
+					}
+					
+					@Override
+					public void onStartTrackingTouch(SeekBar seekBar) {
+						
+					}
+					
+					@Override
+					public void onProgressChanged(SeekBar seekBar, int progress,
+							boolean fromUser) {
+						gp.setAlpha((double) progress/100); //Progress out of 500
+						refreshPlot();
+					}
+				});
 				
     }
     /**
@@ -83,6 +109,7 @@ public class QMPotentialActivity extends Activity{
     	System.out.println("Kappa = "+ gp.getKappa());
     	vSeries = getPotential();
     	psiSeries = getData();
+    	kappaLine = getKappaLine();
     	GraphView firstgraphView = new LineGraphView(  
     			this, // context  
     			"T: "+formatter.format(Transmitted)+
@@ -91,7 +118,7 @@ public class QMPotentialActivity extends Activity{
     	((LineGraphView) firstgraphView).setDrawBackground(true);
     	firstgraphView.addSeries(psiSeries); // Add Psi data
     	firstgraphView.addSeries(vSeries);   // Add V(x) data
-        
+    	firstgraphView.addSeries(kappaLine); // Add kappa Line
         
      // set view port, start=-5, size=10  
         //graphView.setViewPort(-5, 10);
@@ -119,6 +146,7 @@ public class QMPotentialActivity extends Activity{
     	System.out.println("Kappa = "+ gp.getKappa());
     	vSeries = getPotential();
     	psiSeries = getData();
+    	kappaLine = getKappaLine();
     	GraphView graphView = new LineGraphView(  
     			this, // context  
     			"T: "+formatter.format(Transmitted)+
@@ -127,7 +155,7 @@ public class QMPotentialActivity extends Activity{
     	((LineGraphView) graphView).setDrawBackground(true);
     	graphView.addSeries(psiSeries); // Add Psi data
     	graphView.addSeries(vSeries);   // Add V(x) data
-        
+        graphView.addSeries(kappaLine); // Add kappa Line
         
      // set view port, start=-5, size=10  optional stuff
         //graphView.setViewPort(-5, 10);
@@ -148,6 +176,7 @@ public class QMPotentialActivity extends Activity{
     public GraphViewSeries getData(){
     	double[] x = gp.getXvals();
     	double[] psi = gp.getRealPsi();
+    	psi = normalizePsi(psi);
     	GraphViewData[] data = new GraphViewData[x.length];
     	for(int i=0; i<x.length; i++){
     		data [i] = new GraphViewData(x[i], psi[i]);
@@ -174,4 +203,31 @@ public class QMPotentialActivity extends Activity{
     	GraphViewSeries series = new GraphViewSeries("V(x)", Color.rgb(200, 0, 0), data);
     	return series;
     }
+    /**
+     * Returns the GraphViewSeries needed to draw a line corresponding to the kappa 
+     * energy level on the plot.
+     * @return GraphViewSeries series, a straight line corresponding to the current kappa value.
+     */
+    public GraphViewSeries getKappaLine(){
+    	double kappa = gp.getKappa();
+    	double[] x = gp.getXvals();
+    	GraphViewData[] data = new GraphViewData[x.length];
+    	for(int j=0; j<x.length; j++){
+    		data [j] = new GraphViewData(x[j], kappa);
+    	}
+    	GraphViewSeries series = new GraphViewSeries("V(x)", Color.CYAN, data);
+    	return series;
+    }
+    /**
+     * This normalizes psi.
+     * @param psi Real Psi values to be normalized. 
+     * @return psi A vector of normalized psi values. 
+     */
+	public double[] normalizePsi(double psi[]){
+		double maxPsi = gp.maxValPsi();
+		for(int i=0; i<2*gp.getNMAX(); i++){
+			psi[i] = psi[i]/maxPsi;
+		}
+		return psi;
+	}
 }
