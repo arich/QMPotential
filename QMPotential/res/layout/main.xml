@@ -21,7 +21,7 @@
 			android:layout_height="wrap_content" 
 			android:layout_weight="1"
 			android:max="500"
-			android:progress="250"/>
+			android:progress="150"/>
 
 		<SeekBar
 		    android:id="@+id/alphabar"

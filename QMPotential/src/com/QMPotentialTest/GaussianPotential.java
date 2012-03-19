@@ -8,11 +8,12 @@ public class GaussianPotential {
 	//fields:
 	private final static double DXI = 0.005; //step by which to integrate
 	private final static Complex E = new Complex(Math.E, 0);  //Complex version of E so we can have complex exponentials
-	private final int NMAX = 2000;  //Maximum steps in either direction
+	private final int NMAX = 4000;  //Maximum steps in either direction
 	private double kappa = 1; //energy level of wave
 	private double alpha = 1.0; //energy level of potential
 	private double[] xvals = new double[2*NMAX]; // x-values from -NMAX to NMAX
 	private Complex[] psi = new Complex[2*NMAX]; //array to hold wavefunction values
+	private String potentialType = "gaussian";   //Type of potential to use
 	
 	static ComplexFormat format = new ComplexFormat(); //object to access method to format Complex objects
 
@@ -21,6 +22,7 @@ public class GaussianPotential {
 		super();
 		this.kappa = kappa;
 		this.alpha = alpha;
+		this.potentialType = "gaussian";
 		this.fillXVals();
 	}
 	//methods:
@@ -120,6 +122,12 @@ public class GaussianPotential {
 	}
 	public void setAlpha(double alpha) {
 		this.alpha = alpha;
+	}
+	public String getPotentialType() {
+		return potentialType;
+	}
+	public void setPotentialType(String potentialType) {
+		this.potentialType = potentialType;
 	}
 	
 

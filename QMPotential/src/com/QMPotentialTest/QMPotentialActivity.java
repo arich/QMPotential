@@ -10,6 +10,9 @@ import com.jjoe64.graphview.GraphView.*;
 import android.app.Activity;
 import android.os.Bundle;
 import android.graphics.Color;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.widget.LinearLayout;
 import android.widget.SeekBar;
 import android.widget.TextView;
@@ -41,8 +44,6 @@ public class QMPotentialActivity extends Activity{
         SeekBar kappaSeekBar;
         SeekBar alphaSeekBar;
         
-        makePlot();
-        
         kappaSeekBar = (SeekBar) findViewById(R.id.kappabar);
         kappaSeekBar.setBackgroundColor(Color.BLUE);
         kappaSeekBar.setOnSeekBarChangeListener( 
@@ -50,25 +51,19 @@ public class QMPotentialActivity extends Activity{
 					
 					@Override
 					public void onStopTrackingTouch(SeekBar seekBar) {
-						// TODO Auto-generated method stub
-						System.out.println("onStopTracking");
+
 					}
 					
 					@Override
 					public void onStartTrackingTouch(SeekBar seekBar) {
-						// TODO Auto-generated method stub
-						System.out.println("onStartTracking");
+
 					}
 					
 					@Override
 					public void onProgressChanged(SeekBar seekBar, int progress,
 							boolean fromUser) {
-						// TODO Auto-generated method stub
-						System.out.println(".3: Start onProgress..");
-						System.out.println("Progress: " + progress);
 						gp.setKappa((double) progress/100); //Progress out of 500
 						refreshPlot();
-						System.out.println("4: Finish onProgress");
 					}
 				});
        
@@ -94,7 +89,31 @@ public class QMPotentialActivity extends Activity{
 						refreshPlot();
 					}
 				});
+        refreshPlot();
 				
+    }
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        MenuInflater inflater = getMenuInflater();
+        inflater.inflate(R.menu.potential_menu, menu);
+        return true;
+    }
+    //TODO Finish up the menu onclick handling.
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        // Handle item selection
+        switch (item.getItemId()) {
+            case R.id.gaussian:
+            	gp.setPotentialType("gaussian");
+                //Handle Gaussian
+                return true;
+            case R.id.uniform:
+            	gp.setPotentialType("uniform");
+                //Handle Uniform distribution
+                return true;
+            default:
+                return super.onOptionsItemSelected(item);
+        }
     }
     /**
      * Function used to refresh the plot each time for new values of kappa and alpha. 

@@ -3,5 +3,6 @@
 
     <string name="Title">Psi(x) vs. V(x)</string>
     <string name="app_name">QMPotential</string>
-
+	<string name="gaussian">Gaussian Distribution</string>
+	<string name="uniform">Uniform Distribution</string>
 </resources>
