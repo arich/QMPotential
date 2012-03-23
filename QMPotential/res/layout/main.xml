@@ -20,7 +20,7 @@
 			android:layout_width="fill_parent"
 			android:layout_height="wrap_content" 
 			android:layout_weight="1"
-			android:max="500"
+			android:max="350"
 			android:progress="150"/>
 
 		<SeekBar
@@ -28,7 +28,7 @@
 		    android:layout_width="fill_parent"
 		    android:layout_height="wrap_content"
 		    android:layout_weight="1"
-		    android:max="500"
+		    android:max="700"
 			android:progress="250" />
 		
 	</LinearLayout>

@@ -26,7 +26,6 @@ public class GaussianPotential {
 		this.fillXVals();
 	}
 	//methods:
-	//
 	public double gaussianV(double ALPHA, double xi){//Gaussian potential function
 		final double HEIGHT = 1.75;
 		return HEIGHT*Math.exp(-1/ALPHA*xi*xi);
@@ -72,20 +71,7 @@ public class GaussianPotential {
 	}
 	public void integrateFun(){
 		for(int i=2*NMAX-2; i>0; i--){ //Integration backwards
-			switch (potentialType){
-			case 1:
-				psi[i-1] = psi[i].multiply(DXI*DXI*(-kappa+gaussianV(alpha, xvals[i])));
-				break;
-			case 2:
-				psi[i-1] = psi[i].multiply(DXI*DXI*(-kappa+unifV(1.5, 1/alpha, xvals[i]))); //Must reinvert the alpha val
-			default: 
-				psi[i-1] = psi[i].multiply(DXI*DXI*(-kappa+gaussianV(alpha, xvals[i])));
-			}
-			psi[i-1] = psi[i].multiply(DXI*DXI*(-kappa+gaussianV(alpha, xvals[i])));
-			/*This is the unif.
-			* or gaussian: van(ALPHA, xvals[i])));
-			* unif: unifV(alpha, 3, xvals[i])));
-			*/
+			psi[i-1] = psi[i].multiply(DXI*DXI*(-kappa+getPotentialVal(xvals[i], alpha)));
 			psi[i-1] = psi[i-1].add(psi[i].multiply(2));
 			psi[i-1] = psi[i-1].subtract(psi[i+1]);
 		}
@@ -132,11 +118,21 @@ public class GaussianPotential {
 	public void setAlpha(double alpha) {
 		this.alpha = alpha;
 	}
-	public String getPotentialType() {
+	public int getPotentialType() {
 		return potentialType;
 	}
-	public void setPotentialType(String potentialType) {
+	public void setPotentialType(int potentialType) {
 		this.potentialType = potentialType;
+	}
+	public double getPotentialVal(double xval, double alpha){
+		switch (potentialType){
+		case 1:
+			return gaussianV(alpha, xval);
+		case 2:
+			return unifV(1.75, alpha, xval); //Must reinvert the alpha val
+		default: 								//1.5 is the height
+			return gaussianV(alpha, xval);
+		}
 	}
 	
 

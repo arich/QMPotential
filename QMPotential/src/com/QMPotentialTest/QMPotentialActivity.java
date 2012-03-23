@@ -62,7 +62,7 @@ public class QMPotentialActivity extends Activity{
 					@Override
 					public void onProgressChanged(SeekBar seekBar, int progress,
 							boolean fromUser) {
-						gp.setKappa((double) progress/100); //Progress out of 500
+						gp.setKappa((double) (progress+1)/100); //Progress out of 500
 						refreshPlot();
 					}
 				});
@@ -85,7 +85,7 @@ public class QMPotentialActivity extends Activity{
 					@Override
 					public void onProgressChanged(SeekBar seekBar, int progress,
 							boolean fromUser) {
-						gp.setAlpha((double) progress/100); //Progress out of 500
+						gp.setAlpha((double) (progress+1) /100); //Progress out of 500
 						refreshPlot();
 					}
 				});
@@ -104,12 +104,14 @@ public class QMPotentialActivity extends Activity{
         // Handle item selection
         switch (item.getItemId()) {
             case R.id.gaussian:
-            	gp.setPotentialType("gaussian");
                 //Handle Gaussian
+            	gp.setPotentialType(1);
+            	refreshPlot();
                 return true;
             case R.id.uniform:
-            	gp.setPotentialType("uniform");
                 //Handle Uniform distribution
+            	gp.setPotentialType(2);
+            	refreshPlot();
                 return true;
             default:
                 return super.onOptionsItemSelected(item);
@@ -213,7 +215,7 @@ public class QMPotentialActivity extends Activity{
     	double[] x = gp.getXvals();
     	double[] V = new double[x.length];
     	for(int i = 0; i<x.length; i++){
-    		V[i]= gp.gaussianV(alph, x[i]);
+    		V[i]= gp.getPotentialVal(x[i], alph);
     	}
     	GraphViewData[] data = new GraphViewData[x.length];
     	for(int j=0; j<x.length; j++){
