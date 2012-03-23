@@ -6,7 +6,29 @@
 		android:id="@+id/llsliders" 
 		android:orientation="vertical"
 		android:weightSum="50">
-		
+
+		<LinearLayout
+		    android:id="@+id/llHorizontal"
+		    android:layout_width="fill_parent"
+		    android:layout_height="20dp"
+		    android:orientation="horizontal"
+		    android:weightSum="5" >
+
+		    <TextView
+		        android:id="@+id/reflectText"
+		        android:layout_width="40dp"
+		        android:layout_height="20dp"
+		        android:layout_weight="2.5" 
+		        android:gravity="center"/>
+
+		    <TextView
+		        android:id="@+id/transmitText"
+		        android:layout_width="40dp"
+		        android:layout_height="20dp"
+		        android:layout_weight="2.5" 
+		        android:gravity="center" />
+		</LinearLayout>
+	    
 	    <LinearLayout
 	        android:id="@+id/llplot"
 	        android:layout_width="fill_parent"
