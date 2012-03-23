@@ -13,7 +13,7 @@ public class GaussianPotential {
 	private double alpha = 1.0; //energy level of potential
 	private double[] xvals = new double[2*NMAX]; // x-values from -NMAX to NMAX
 	private Complex[] psi = new Complex[2*NMAX]; //array to hold wavefunction values
-	private String potentialType = "gaussian";   //Type of potential to use
+	private int potentialType = 1;   //Type of potential to use
 	
 	static ComplexFormat format = new ComplexFormat(); //object to access method to format Complex objects
 
@@ -22,12 +22,12 @@ public class GaussianPotential {
 		super();
 		this.kappa = kappa;
 		this.alpha = alpha;
-		this.potentialType = "gaussian";
+		this.potentialType = 1;
 		this.fillXVals();
 	}
 	//methods:
 	//
-	public double van(double ALPHA, double xi){//Gaussian potential function
+	public double gaussianV(double ALPHA, double xi){//Gaussian potential function
 		final double HEIGHT = 1.75;
 		return HEIGHT*Math.exp(-1/ALPHA*xi*xi);
 	}
@@ -72,7 +72,16 @@ public class GaussianPotential {
 	}
 	public void integrateFun(){
 		for(int i=2*NMAX-2; i>0; i--){ //Integration backwards
-			psi[i-1] = psi[i].multiply(DXI*DXI*(-kappa+van(alpha, xvals[i])));
+			switch (potentialType){
+			case 1:
+				psi[i-1] = psi[i].multiply(DXI*DXI*(-kappa+gaussianV(alpha, xvals[i])));
+				break;
+			case 2:
+				psi[i-1] = psi[i].multiply(DXI*DXI*(-kappa+unifV(1.5, 1/alpha, xvals[i]))); //Must reinvert the alpha val
+			default: 
+				psi[i-1] = psi[i].multiply(DXI*DXI*(-kappa+gaussianV(alpha, xvals[i])));
+			}
+			psi[i-1] = psi[i].multiply(DXI*DXI*(-kappa+gaussianV(alpha, xvals[i])));
 			/*This is the unif.
 			* or gaussian: van(ALPHA, xvals[i])));
 			* unif: unifV(alpha, 3, xvals[i])));

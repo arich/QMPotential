@@ -213,7 +213,7 @@ public class QMPotentialActivity extends Activity{
     	double[] x = gp.getXvals();
     	double[] V = new double[x.length];
     	for(int i = 0; i<x.length; i++){
-    		V[i]= gp.van(alph, x[i]);
+    		V[i]= gp.gaussianV(alph, x[i]);
     	}
     	GraphViewData[] data = new GraphViewData[x.length];
     	for(int j=0; j<x.length; j++){
