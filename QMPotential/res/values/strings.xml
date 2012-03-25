@@ -5,4 +5,7 @@
     <string name="app_name">QMPotential</string>
 	<string name="gaussian">Gaussian Distribution</string>
 	<string name="uniform">Uniform Distribution</string>
+	<string name="StartText">This app displays a wavefunction traveling from left to right in blue and a potential it encounters in red. The energy level of the 
+	    wavefunction is shown as the cyan line. In classical mechanics, when the energy level is lower than that of the potential (e.g. a hill), the particle would 
+	    not be able to travel through the </string>
 </resources>
