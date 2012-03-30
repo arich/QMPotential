@@ -3,20 +3,33 @@
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
     android:orientation="vertical" >
-    
-    <TextView
-        android:id="@+id/startTextView"
-        android:text="@string/StartText"
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-		>
-    </TextView>
 
-    <Button
-        android:id="@+id/startButtonID"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:text="Start!" />
+    <ScrollView
+        android:id="@+id/ScrollView"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent" >
+
+        <LinearLayout
+            android:id="@+id/ScrollLL"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical" >
+
+            <TextView
+                android:id="@+id/startTextView"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/StartText"
+                android:textSize="22sp" />
+
+            <Button
+                android:id="@+id/startButtonID"
+                android:layout_width="wrap_content"
+                android:layout_height="fill_parent"
+                android:layout_gravity="center"
+                android:width="150dp"
+                android:text="Start!" />
+        </LinearLayout>
+    </ScrollView>
 
 </LinearLayout>

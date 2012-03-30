@@ -2,10 +2,19 @@
 <resources>
 
     <string name="Title">Psi(x) vs. V(x)</string>
-    <string name="app_name">QMPotential</string>
+    <string name="app_name">Quantum Tunnelling</string>
 	<string name="gaussian">Gaussian Distribution</string>
 	<string name="uniform">Uniform Distribution</string>
-	<string name="StartText">This app displays a wavefunction traveling from left to right in blue and a potential it encounters in red. The energy level of the 
-	    wavefunction is shown as the cyan line. In classical mechanics, when the energy level is lower than that of the potential (e.g. a hill), the particle would 
-	    not be able to travel through the </string>
+	<string name="StartText">This app displays a wavefunction traveling from
+  left to right in blue and a potential it encounters in red. The energy level of the 
+	    wavefunction is shown as the cyan line. In classical mechanics, when the energy level is 
+	    lower than that of the potential (such as a hill), the particle would 
+	    not be able to travel through the potential, a ball would roll up and back down the hill.
+	    When particles are extremely small, they exhibit quantum (wavelike) behavior, and there is 
+	    a certain probability, shown by the T coefficient to the top right, that the particle tunnels through
+	    the potential. The R coefficient is the probability the particle will reflect off the potential. 
+	    The waveform is calculated in real time through backwards integration. You can change
+	    the energy level of the waveform with the blue slider, and the width of the potential with the red slider. 
+	    Finally, check the menu to switch between Gaussian and uniform distribution potentials.
+	    </string>
 </resources>
