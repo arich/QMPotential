@@ -1,4 +1,4 @@
-package com.QMPotentialTest;
+package com.QMTunnelling;
 
 import java.lang.Math; // Gives Math.exp, Math.sin, etc.
 import java.io.*;
