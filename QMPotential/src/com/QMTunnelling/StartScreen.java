@@ -11,8 +11,8 @@ import android.widget.TextView;
 /**
  * StartScreen
  * @author AndrewRich
- * 
- *  This file is part of QMPotential.
+ * Copyright (C) 2012 Andrew Rich
+ *  This file is part of Quantum Tunnelling, in the QMPotential project folder.
 
     QMPotential is free software: you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -26,6 +26,12 @@ import android.widget.TextView;
 
     You should have received a copy of the GNU General Public License
     along with QMPotential.  If not, see <http://www.gnu.org/licenses/>.
+    
+    
+    GraphView Library:
+    Copyright (C) 2011 Jonas Gehring
+	Licensed under the GNU Lesser General Public License (LGPL)
+	http://www.gnu.org/licenses/lgpl.html
  *
  */
 public class StartScreen extends Activity {
